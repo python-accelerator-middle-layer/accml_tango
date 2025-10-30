@@ -1,4 +1,3 @@
-[![Documentation Status](https://readthedocs.org/projects/pyaml/badge/?version=latest)](https://pyaml.readthedocs.io/en/latest/?badge=latest)
 
 # pyAML: python accelerator middle layer
 
@@ -43,3 +42,6 @@ python3 tune_response_measurement.py
 
 
     
+=======
+# accml_tango
+>>>>>>> 5465c2cb69d5b8ac56a8d3cee46a7f49a6bf68be
