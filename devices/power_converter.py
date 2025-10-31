@@ -11,16 +11,18 @@ from ophyd_async.core import (
 )
 from ophyd_async.tango.core import TangoReadable, TangoPolling
 
-from accml.core.utils.ophyd_async.multiplexer_for_settable_devices import _MultiplexerItemProxy
+from accml.core.utils.ophyd_async.multiplexer_for_settable_devices import (
+    _MultiplexerItemProxy,
+)
 
 
 class MultiplexerItemProxy(_MultiplexerItemProxy):
-     """
-     Todo:
-         need to provide difference current
-     """
+    """
+    Todo:
+        need to provide difference current
+    """
 
-     pass
+    pass
 
 
 class PowerConverterBase(TangoReadable, AsyncStageable):
@@ -107,6 +109,6 @@ class PowerConverter(PowerConverterBase):
     """
 
     # fmt: off
-    current_setpoint: A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL, TangoPolling(1.0, 0.01, 1e-4) ]
-    current_readback: A[ SignalR[float] ,  Format.UNCACHED_SIGNAL,        TangoPolling(1.0, 0.01, 1e-4) ]
+    current_setpoint: A[SignalRW[float], Format.HINTED_UNCACHED_SIGNAL, TangoPolling(1.0, 0.01, 1e-4)]
+    current_readback: A[SignalR[float],  Format.UNCACHED_SIGNAL,        TangoPolling(1.0, 0.01, 1e-4)]
     # fmt: on
