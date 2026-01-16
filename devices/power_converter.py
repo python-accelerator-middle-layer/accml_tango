@@ -24,7 +24,7 @@ class MultiplexerItemProxy(_MultiplexerItemProxy):
      pass
 
 
-class _PowerConverterBase(StandardReadable, AsyncStageable):
+class PowerConverterBase(TangoDevice, StandardReadable, AsyncStageable):
     """
 
     Warning:
@@ -101,7 +101,7 @@ class _PowerConverterBase(StandardReadable, AsyncStageable):
         return r
 
 
-class PowerConverter(TangoDevice, StandardReadable, AsyncStageable):
+class PowerConverter(PowerConverterBase):
     """
     Todo:
         need to find out why signals must be marked as uncached...
