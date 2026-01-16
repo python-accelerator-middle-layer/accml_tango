@@ -8,8 +8,9 @@ from ophyd_async.core import (
     SignalR,
     SignalRW,
     StandardReadableFormat as Format,
+    StandardReadable,
 )
-from ophyd_async.tango.core import TangoReadable, TangoPolling
+from ophyd_async.tango.core import TangoPolling, TangoDevice
 
 from accml.core.utils.ophyd_async.multiplexer_for_settable_devices import _MultiplexerItemProxy
 
@@ -23,7 +24,7 @@ class MultiplexerItemProxy(_MultiplexerItemProxy):
      pass
 
 
-class PowerConverterBase(TangoReadable, AsyncStageable):
+class _PowerConverterBase(StandardReadable, AsyncStageable):
     """
 
     Warning:
@@ -100,13 +101,13 @@ class PowerConverterBase(TangoReadable, AsyncStageable):
         return r
 
 
-class PowerConverter(PowerConverterBase):
+class PowerConverter(TangoDevice, StandardReadable, AsyncStageable):
     """
     Todo:
         need to find out why signals must be marked as uncached...
     """
 
     # fmt: off
-    current_setpoint: A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL, TangoPolling(1.0, 0.01, 1e-4) ]
+    current_set: A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL, TangoPolling(1.0, 0.01, 1e-4) ]
     current_readback: A[ SignalR[float] ,  Format.UNCACHED_SIGNAL,        TangoPolling(1.0, 0.01, 1e-4) ]
     # fmt: on
