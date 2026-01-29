@@ -108,6 +108,6 @@ class PowerConverter(TangoDevice, StandardReadable, AsyncStageable):
     """
 
     # fmt: off
-    current_set: A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL, TangoPolling(1.0, 0.01, 1e-4) ]
+    current_set:      A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL, TangoPolling(1.0, 0.01, 1e-4) ]
     current_readback: A[ SignalR[float] ,  Format.UNCACHED_SIGNAL,        TangoPolling(1.0, 0.01, 1e-4) ]
     # fmt: on
