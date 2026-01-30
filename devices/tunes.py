@@ -26,18 +26,17 @@ class Tunes(TangoDevice, StandardReadable, Triggerable):
 
         super().__init__(trl=trl, name=name, auto_fill_signals=False)
 
-
     @AsyncStatus.wrap
     async def trigger(self) -> Status:
         await wait_for_new_value(self.Tune_v)
 
 
-    async def describe(self) -> dict[str, DataKey]:
-        """adjust precision to a higher value
-        """
-        d = await super().describe()
-        for name in ["Tune_h", "Tune_v"]:
-            d[f"{self.name}-{name}"]["precision"] = 5
-        return d
+    # async def describe(self) -> dict[str, DataKey]:
+    #     """adjust precision to a higher value
+    #    """
+    #     d = await super().describe()
+    #     for name in ["Tune_h", "Tune_v"]:
+    #         d[f"{self.name}-{name}"]["precision"] = 5
+    #    return d
 
     # count : A[ SignalRW[int] , Format.HINTED_UNCACHED_SIGNAL  ]
