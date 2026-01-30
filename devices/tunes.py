@@ -11,20 +11,20 @@ from accml.core.utils.ophyd_async.new_value import wait_for_new_value
 
 class Tunes(TangoDevice, StandardReadable, Triggerable):
     # fmt:off
-    hor:  A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL , TangoPolling(.5, 1e-3, 1e-4) ]
-    vert: A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL , TangoPolling(.5, 1e-3, 1e-4) ]
+    Tune_h:  A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL , TangoPolling(.5, 1e-3, 1e-4) ]
+    Tune_v: A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL , TangoPolling(.5, 1e-3, 1e-4) ]
     # fmt:on
 
     @AsyncStatus.wrap
     async def trigger(self) -> Status:
-        await wait_for_new_value(self.vert)
+        await wait_for_new_value(self.Tune_v)
 
 
     async def describe(self) -> dict[str, DataKey]:
         """adjust precision to a higher value
         """
         d = await super().describe()
-        for name in ["hor", "vert"]:
+        for name in ["Tune_h", "Tune_v"]:
             d[f"{self.name}-{name}"]["precision"] = 5
         return d
 
