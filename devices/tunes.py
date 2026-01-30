@@ -1,7 +1,7 @@
 from typing import Annotated as A
 
 from event_model import DataKey
-from ophyd_async.core import SignalRW, StandardReadable, StandardReadableFormat as Format
+from ophyd_async.core import SignalRW, StandardReadable, StandardReadableFormat as Format, SignalR
 from ophyd_async.tango.core import TangoDevice, TangoPolling
 from ophyd_async.core import AsyncStatus
 from bluesky.protocols import Triggerable, Status
@@ -11,8 +11,8 @@ from accml.core.utils.ophyd_async.new_value import wait_for_new_value
 
 class Tunes(TangoDevice, StandardReadable, Triggerable):
     # fmt:off
-    Tune_h:  A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL , TangoPolling(.5, 1e-3, 1e-4) ]
-    Tune_v: A[ SignalRW[float] , Format.HINTED_UNCACHED_SIGNAL , TangoPolling(.5, 1e-3, 1e-4) ]
+    Tune_h:  A[ SignalR[float] , Format.HINTED_UNCACHED_SIGNAL , TangoPolling(.5, 1e-3, 1e-4) ]
+    Tune_v: A[ SignalR[float] , Format.HINTED_UNCACHED_SIGNAL , TangoPolling(.5, 1e-3, 1e-4) ]
     # fmt:on
 
     @AsyncStatus.wrap
