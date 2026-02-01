@@ -14,7 +14,9 @@ class Magnet(TangoDevice, StandardReadable, AsyncStageable):
     Todo:
         need to find out why signals must be marked as uncached...
     """
-
+    async def set(self, value: float):
+        """Minimal device-level set. Must be awaited."""
+        await self.Strength.set(value)
     # fmt: off
     Strength: A[SignalRW[float], Format.HINTED_UNCACHED_SIGNAL, TangoPolling(0.2, 1e-4, 1e-4)]
     # magnetic_strength_readback: A[ SignalR[float]  , Format.UNCACHED_SIGNAL        , TangoPolling(0.1, 1e-4, 1e-4) ]
